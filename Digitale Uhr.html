@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datum und Uhrzeit</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #222;
+      color: #00ffff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    #datum, #uhr {
+      font-size: 48px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div id="datum">01.01.2023</div>
+    <div id="uhr">00:00:00</div>
+  </div>
+
+  <script>
+    function aktualisiereDatumUndUhr() {
+      const jetzt = new Date();
+
+      // Datum formatieren
+      const tag = String(jetzt.getDate()).padStart(2, '0');
+      const monat = String(jetzt.getMonth() + 1).padStart(2, '0');
+      const jahr = jetzt.getFullYear();
+      document.getElementById('datum').textContent = `${tag}.${monat}.${jahr}`;
+
+      // Uhrzeit formatieren
+      const stunden = String(jetzt.getHours()).padStart(2, '0');
+      const minuten = String(jetzt.getMinutes()).padStart(2, '0');
+      const sekunden = String(jetzt.getSeconds()).padStart(2, '0');
+      document.getElementById('uhr').textContent = `${stunden}:${minuten}:${sekunden}`;
+    }
+
+    setInterval(aktualisiereDatumUndUhr, 1000); // Aktualisiere jede Sekunde
+    aktualisiereDatumUndUhr(); // Initiale Anzeige von Datum und Uhrzeit
+  </script>
+</body>
+</html>
